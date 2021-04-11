@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Stats" Version="0.4.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Authors>Heinrich Lukas Weil</Authors>
+    <Description>Simple Row based Table functionality for F#</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/HLWeil/Rowy</PackageProjectUrl>
+    <PackageTags>table fsharp dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/HLWeil/Rowy</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>

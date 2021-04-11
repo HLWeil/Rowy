@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Deedle" Version="2.3.0" />
+    <PackageReference Include="FSharp.Stats" Version="0.4.1" />
+    <PackageReference Include="Microsoft.ML" Version="1.5.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rowy\Rowy.fsproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Authors>Heinrich Lukas Weil</Authors>
+    <Description>Deedle and MLDotnet Interop for simple Row based Table</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/HLWeil/Rowy</PackageProjectUrl>
+    <PackageTags>table fsharp dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/HLWeil/Rowy</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
