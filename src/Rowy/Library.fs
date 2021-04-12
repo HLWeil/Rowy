@@ -121,7 +121,17 @@ module Table =
             dataFrame.RowKeys
             transposedFrame
 
-    let filterRows (f : 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
+    let filterRows (f : 'R -> 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
+        let filteredRowKeys,filteredFrame = 
+            Array.zip dataFrame.RowKeys dataFrame.Rows
+            |> Array.filter (fun (r,vs) -> f r vs)
+            |> Array.unzip       
+        Table<'R,'C,'V>.create
+            filteredRowKeys
+            dataFrame.ColumnKeys
+            filteredFrame
+
+    let filterRowValues (f : 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
         let indices = System.Collections.Generic.HashSet<int>()
         let filteredFrame = 
             dataFrame.Rows
@@ -142,13 +152,16 @@ module Table =
                     None
                 else Some k 
             )
-        Table<'C,'R,'V>.create
+        Table<'R,'C,'V>.create
             filteredRowKeys
             dataFrame.ColumnKeys
             filteredFrame
 
-    let filterCols (f : 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
+    let filterCols (f : 'C -> 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
         transpose dataFrame |> filterRows f |> transpose
+
+    let filterColValues (f : 'V [] -> bool) (dataFrame : Table<'R,'C,'V>) : Table<'R,'C,'V> =
+        transpose dataFrame |> filterRowValues f |> transpose
 
     let map (f : 'V -> 'VR) (dataFrame : Table<'R,'C,'V>) =
         dataFrame.Rows
